@@ -1,18 +1,14 @@
 #include "revert_string.h"
-#include <stdio.h>
-
 void RevertString(char *str)
 {
-	int size = sizeof(str)/sizeof(char)+1;
-	printf("%d\n",sizeof(str));
-	printf("%d\n",sizeof(char));
-	printf("%d\n",size);
-	int i = 0;
-	while(i <= size/2){
+	int len = 0;
+	for(int i=0; *(str+i) != '\0'; ++i){
+		++len;
+	}
+	for(int i=0; i < len/2; ++i){
 		char buff = *(str+i);
-		*(str+i) = *(str+size-i);
-		*(str+size-i) = buff;
-		++i;
+		*(str+i) = *(str+len-1-i);
+		*(str+len-1-i) = buff;
 	}
 }
 

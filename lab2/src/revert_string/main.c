@@ -14,8 +14,6 @@ int main(int argc, char *argv[])
 
 	char *reverted_str = malloc(sizeof(char) * (strlen(argv[1]) + 1));
 	strcpy(reverted_str, argv[1]);
-	printf("%d\n",sizeof(reverted_str));
-	printf("%d\n",sizeof(char) * (strlen(argv[1]) + 1));
 
 	RevertString(reverted_str);
 
