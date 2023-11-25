@@ -102,18 +102,15 @@ int main(int argc, char **argv) {
 
         if (with_files) {
           // use files here
-          const char path[100] = "/project/home/mrmd/workspace/lab3/file.txt";
-          FILE *fp=fopen(path, "w+");
-          for (int j = 0; j < array_size; j++){
-            fwrite(array, sizeof array[0], array_size, fp);
-          }
+          FILE *fp=fopen("/project/home/mrmd/workspace/lab3/file.txt", "w+");
+          for (int j = 0; j < array_size; j++) printf("%d ", array[j]);
+          for (int j = 0; j < array_size; j++) fwrite(array, sizeof array[0], array_size, fp);
           fclose(fp);
         } else {
           // use pipe here
         }
         return 0;
       }
-
     } else {
       printf("Fork failed!\n");
       return 1;
@@ -122,7 +119,6 @@ int main(int argc, char **argv) {
 
   while (active_child_processes > 0) {
     // your code here
-
     active_child_processes -= 1;
   }
 
@@ -136,12 +132,11 @@ int main(int argc, char **argv) {
 
     if (with_files) {
       // read from files
-      const char path[50] = "/project/home/mrmd/workspace/lab3/file.txt";
-      char str[array_size*2];
-      FILE *fp=fopen(path, "r");
-      fread(str, sizeof str[0], array_size, fp);
+      int s[1000];
+      FILE *fp=fopen("/project/home/mrmd/workspace/lab3/file.txt", "r");
+      fread(s, sizeof array[0], array_size, fp);
+      printf("%d", s);
       fclose(fp);
-      printf(str);
     } else {
       // read from pipes
     }
@@ -158,7 +153,7 @@ int main(int argc, char **argv) {
 
   free(array);
 
-  printf("Min: %d\n", min_max.min);
+  printf("\nMin: %d\n", min_max.min);
   printf("Max: %d\n", min_max.max);
   printf("Elapsed time: %fms\n", elapsed_time);
   fflush(NULL);
