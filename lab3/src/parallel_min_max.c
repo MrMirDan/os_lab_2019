@@ -98,11 +98,16 @@ int main(int argc, char **argv) {
       active_child_processes += 1;
       if (child_pid == 0) {
         // child process
-
         // parallel somehow
 
         if (with_files) {
           // use files here
+          const char path[100] = "/project/home/mrmd/workspace/lab3/file.txt";
+          FILE *fp=fopen(path, "w+");
+          for (int j = 0; j < array_size; j++){
+            fwrite(array, sizeof array[0], array_size, fp);
+          }
+          fclose(fp);
         } else {
           // use pipe here
         }
@@ -131,6 +136,12 @@ int main(int argc, char **argv) {
 
     if (with_files) {
       // read from files
+      const char path[50] = "/project/home/mrmd/workspace/lab3/file.txt";
+      char str[array_size*2];
+      FILE *fp=fopen(path, "r");
+      fread(str, sizeof str[0], array_size, fp);
+      fclose(fp);
+      printf(str);
     } else {
       // read from pipes
     }
