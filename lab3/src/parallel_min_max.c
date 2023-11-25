@@ -104,7 +104,7 @@ int main(int argc, char **argv) {
           // use files here
           FILE *fp=fopen("/project/home/mrmd/workspace/lab3/file.txt", "w+");
           for (int j = 0; j < array_size; j++) printf("%d ", array[j]);
-          for (int j = 0; j < array_size; j++) fwrite(array, sizeof array[0], array_size, fp);
+          fwrite(array, sizeof array[0], array_size, fp);
           fclose(fp);
         } else {
           // use pipe here
